@@ -13,49 +13,49 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 /**
- * ÓÊ¼ş·¢ËÍ¹¤¾ßÀà
+ * é‚®ä»¶å‘é€å·¥å…·ç±»
  * @author Administrator
  * 
  */
 public class MailUtils {
 	/**
-	 * ·¢ËÍÓÊ¼şµÄ·½·¨
-	 * @param to	£ºÊÕ¼şÈË
-	 * @param code	£º¼¤»îÂë
+	 * å‘é€é‚®ä»¶çš„æ–¹æ³•
+	 * @param to	ï¼šæ”¶ä»¶äºº
+	 * @param code	ï¼šæ¿€æ´»ç 
 	 */
 	public static void sendMail(String to, String code) {
 		Properties props = new Properties();
 		props.setProperty("mail.smtp.host", "smtp.qq.com");
 		props.setProperty("mail.smtp.port", "465");
-		//qqÓÊÏäÒªÇóSSL°²È«Á¬½Ó
+		//qqé‚®ç®±è¦æ±‚SSLå®‰å…¨è¿æ¥
         props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.setProperty("mail.smtp.socketFactory.fallback", "false");
         props.setProperty("mail.smtp.socketFactory.port", "465");
-        //°²È«ÈÏÖ¤µÃ¿ªÊ¼
+        //å®‰å…¨è®¤è¯å¾—å¼€å§‹
         props.setProperty("mail.smtp.auth", "true");
 		Session session = Session.getInstance(props, new Authenticator() {
 
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				// TODO Auto-generated method stub
-				return new PasswordAuthentication("623796060@qq.com", "ifyiqb717");
+				return new PasswordAuthentication("xx@qq.com", "password");
 			}
 			
 		});
 		
 		Message message = new MimeMessage(session);
-		//·¢¼şÈË
+		//å‘ä»¶äºº
 		try {
-			message.setFrom(new InternetAddress("623796060@qq.com"));
+			message.setFrom(new InternetAddress("xx@qq.com"));
 			
-			//ÊÕ¼şÈË£¬³­ËÍCC£¬ÃÜËÍBCC
+			//æ”¶ä»¶äººï¼ŒæŠ„é€CCï¼Œå¯†é€BCC
 			message.addRecipient(RecipientType.TO, new InternetAddress(to));
-			//±êÌâ
-			message.setSubject("À´×ÔÌìÃ¨³¬ÊĞµÄ¼¤»îÓÊ¼ş");
-			//ÕıÎÄ
-			message.setContent("<h1>ÌìÃ¨³¬ÊĞµÄ¼¤»îÓÊ¼ş£¡µã»÷ÏÂÃæµÄÁ´½ÓÍê³É¼¤»î£¡</h1><h3><a href='http://www.spaghetti.net.cn:8080/ssh_shop/user_active.action?code=" + code + "'>http://192.168.10.7:8080/ssh_shop/user_active.action?code=" + code + "</a></h3>", "text/html;charset=UTF-8");
+			//æ ‡é¢˜
+			message.setSubject("æ¥è‡ªå¤©çŒ«è¶…å¸‚çš„æ¿€æ´»é‚®ä»¶");
+			//æ­£æ–‡
+			message.setContent("<h1>å¤©çŒ«è¶…å¸‚çš„æ¿€æ´»é‚®ä»¶ï¼ç‚¹å‡»ä¸‹é¢çš„é“¾æ¥å®Œæˆæ¿€æ´»ï¼</h1><h3><a href='http://www.spaghetti.net.cn:8080/ssh_shop/user_active.action?code=" + code + "'>http://www.spaghetti.net.cn:8080/ssh_shop/user_active.action?code=" + code + "</a></h3>", "text/html;charset=UTF-8");
 
-			//·¢ËÍÓÊ¼ş
+			//å‘é€é‚®ä»¶
 			Transport.send(message);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
@@ -63,9 +63,9 @@ public class MailUtils {
 		}
 	}
 	
-	//main²âÊÔÓÃ
+	//mainæµ‹è¯•ç”¨
 	public static void main(String[] args) {
-		sendMail("z623796060@126.com", "11111111111");
+		sendMail("xx@126.com", "11111111111");
 		System.out.println("success");
 	}
 }
